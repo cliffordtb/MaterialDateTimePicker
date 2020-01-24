@@ -28,6 +28,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wdullaer.materialdatetimepicker.R;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateChangedListener;
@@ -97,10 +98,15 @@ public class YearPickerView extends ListView implements OnItemClickListener, OnD
 
         YearAdapter(int minYear, int maxYear) {
             if (minYear > maxYear) {
-                throw new IllegalArgumentException("minYear > maxYear");
+                // throw new IllegalArgumentException("minYear > maxYear");
+                Toast.makeText(getContext(), "minYear > maxYear", Toast.LENGTH_SHORT).show();
+                mMinYear = maxYear;
+                mMaxYear = minYear;
             }
-            mMinYear = minYear;
-            mMaxYear = maxYear;
+            else {
+                mMinYear = minYear;
+                mMaxYear = maxYear;
+            }
         }
 
         @Override
